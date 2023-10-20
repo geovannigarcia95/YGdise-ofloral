@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    /* Estilos anteriores omitidos por brevedad */
+    body {
+      background-image: url('flores.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center center;
+      background-color: rgba(0, 0, 0, 0.5);
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .flower {
+      position: relative;
+    }
+
+    .text-above,
+    .text-below {
+      text-align: center;
+      font-size: 20px;
+      position: absolute;
+      font-weight: bold;
+      transition: color 0.5s;
+    }
+
+    .text-above {
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .text-below {
+      bottom: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  </style>
+  <title>Flower</title>
+</head>
+<body>
+
+  <div class="flower">
+    <div class="mid"></div>
+    <div class="Petal1 p1"></div>
+    <div class="Petal1 p2"></div>
+    <div class="Petal1 p3"></div>
+    <div class="Petal1 p4"></div>
+    <div class="Petal2 p1"></div>
+    <div class="Petal2 p2"></div>
+    <div class="Petal2 p3"></div>
+    <div class="Petal2 p4"></div>
+    <div class="Petal3 p1"></div>
+    <div class="Petal3 p2"></div>
+    <div class="Petal3 p3"></div>
+    <div class="Petal3 p4"></div>
+    <div class="text-above">Por: YGeovanni GL.</div>
+    <div class="text-below">Desarrollador web y Programador</div>
+  </div>
+
+  <script>
+    // Array con colores de los pétalos
+    const colors = [
+      '#FF5733', '#FFC300', '#FF33E9', '#33FF57', '#337DFF',
+      '#FF334A', '#33FFE9', '#FF33A6', '#A633FF', '#33C4FF',
+      '#FF33C4', '#33FFA6', '#33FF33', '#FF5733', '#FF5733',
+      '#FF33E9', '#FFC300', '#33FFE9', '#33FF57', '#33C4FF',
+      '#000000', // Color Negro
+      '#ffffff', // Color Blanco
+      '#FF9933', '#33FFFF', '#9900CC', '#00FF00', '#FF6600',
+      '#FF99FF', '#00CCFF', '#990099', '#FF00FF', '#CCCC00',
+      '#3300CC', '#66FF00', '#660000', '#FF3366', '#99FF33'
+    ];
+
+    // Array con las rutas de las imágenes de fondo en orden
+    const backgroundImages = [
+      'flores.jpg', // Imagen de fondo inicial
+      'fondo11.jpg',
+      'fondo2.jpg',
+      'fondo3.jpg',
+      'fondo4.jpg',
+      'fondo5.jpg',
+      'fondo6.jpg',
+      'fondo7.jpg',
+      'fondo8.jpg',
+      'fondo9.jpg',
+      'fondo10.jpg',
+      'fondo12.jpg',
+      'fondo13.jpg',
+      'fondo14.jpg',
+      'fondo15.jpg',
+      'fondo16.jpg',
+      'fondo17.jpg',
+      'fondo18.jpg',
+      'fondo19.jpg',
+      'fondo20.jpg',
+      'fondo21.jpg',
+      'fondo22.jpg',
+      'fondo23.jpg',
+      'fondo24.jpg',
+      'fondo25.jpg'
+    ];
+
+    let currentBackgroundIndex = 0;
+
+    // Función para cambiar el color de los datos, los pétalos y la imagen de fondo al mismo tiempo
+    function changeColorsAndBackground() {
+      const randomColorIndex = Math.floor(Math.random() * colors.length);
+      const randomColor = colors[randomColorIndex];
+      
+      // Aplicar el color a los datos de arriba y abajo
+      const textAbove = document.querySelector('.text-above');
+      const textBelow = document.querySelector('.text-below');
+      
+      textAbove.style.color = randomColor;
+      textBelow.style.color = randomColor;
+
+      // Aplicar el color a los pétalos
+      const petals = document.querySelectorAll('.Petal1, .Petal2, .Petal3');
+      petals.forEach((petal) => {
+        petal.style.background = randomColor;
+      });
+
+      // Cambiar la imagen de fondo
+      document.body.style.backgroundImage = `url('${backgroundImages[currentBackgroundIndex]}')`;
+
+      // Incrementar el índice de la imagen de fondo
+      currentBackgroundIndex = (currentBackgroundIndex + 1) % backgroundImages.length;
+    }
+
+    // Cambiar el color de los datos, los pétalos y la imagen de fondo cada 5 segundos (5000 milisegundos)
+    setInterval(changeColorsAndBackground, 5000);
+
+    // Inicialmente, muestra 'flores.jpg' como imagen de fondo
+    document.body.style.backgroundImage = `url('flores.jpg')`;
+  </script>
+</body>
+</html>
